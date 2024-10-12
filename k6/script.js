@@ -5,5 +5,5 @@ export const options = {
   duration: '10s',
 };
 export default function () {
-  http.get('http://web:8080/django/sample/');
+  http.get('http://web:8080/django/workload/no-load');
 }
