@@ -10,10 +10,11 @@ services:
     volumes:
     - ./django:/app
     working_dir: /app/app/
-    command: ["gunicorn", "mysite.wsgi", "--bind", "0.0.0.0:8000"]
+    command: ["gunicorn", "mysite.asgi:application", "-w", "1", "-k", "uvicorn_worker.UvicornWorker", "--bind", "0.0.0.0:8000"]
+    # command: ["gunicorn", "mysite.wsgi", "--bind", "0.0.0.0:8000"]
   k6:
     image: grafana/k6:master-with-browser
     volumes:
     - ./k6:/app
     working_dir: /app
-    command: ["run", "pilot.js"]
+    command: ["run", "script.js"]
