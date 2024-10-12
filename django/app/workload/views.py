@@ -1,18 +1,19 @@
 from django.http import HttpResponse
 import time
 import math
+import asyncio
 
 
-def no_load(request):
+async def no_load(request):
     return HttpResponse("nothing to do")
 
 
-def sleep(request):
-    time.sleep(1)
+async def sleep(request):
+    await asyncio.sleep(1)
     return HttpResponse("sleeping")
 
 
-def prime_number(request):
+async def prime_number(request):
     max_number = 50000
     primes =[]
     for n in range(3, max_number + 1):
