@@ -16,4 +16,4 @@ services:
     volumes:
     - ./k6:/app
     working_dir: /app
-    command: ["run", "pilot.js"]    
+    command: ["run", "pilot.js"]

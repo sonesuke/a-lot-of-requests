@@ -2,7 +2,11 @@ from django.http import HttpResponse
 import time
 import math
 
-# Create your views here.
+
+def no_load(request):
+    return HttpResponse("nothing to do")
+
+
 def sleep(request):
     time.sleep(1)
     return HttpResponse("sleeping")
