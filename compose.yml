@@ -1,0 +1,6 @@
+services:
+  web:
+    build: nginx
+    ports:
+    - "8080:80"
+    
