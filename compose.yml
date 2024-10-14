@@ -12,9 +12,16 @@ services:
     working_dir: /app/app/
     command: ["gunicorn", "mysite.asgi:application", "-w", "1", "-k", "uvicorn_worker.UvicornWorker", "--bind", "0.0.0.0:8000"]
     # command: ["gunicorn", "mysite.wsgi", "--bind", "0.0.0.0:8000"]
+  actix_web:
+    build: actix_web
+    volumes:
+    - ./actix_web:/app
+    working_dir: /app
+    command: ["actix_web_server"]
   k6:
     image: grafana/k6:master-with-browser
     volumes:
     - ./k6:/app
     working_dir: /app
     command: ["run", "--insecure-skip-tls-verify", "script.js"]
+  
