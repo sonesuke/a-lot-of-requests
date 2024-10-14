@@ -1,9 +1,17 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 export const options = {
-  vus: 10,
-  duration: '10s',
+    scenarios: {
+        common_scenario: {
+            executor: 'constant-vus',
+            exec: 'test',
+            vus: 100,
+            duration: '12s',
+            startTime: '2s',
+        }
+    }
 };
-export default function () {
-  http.get('http://web:8080/django/workload/prime-number');
+
+export function test () {
+  http.get('https://web/django/workload/prime-number');
 }
