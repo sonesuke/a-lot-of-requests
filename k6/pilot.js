@@ -22,7 +22,7 @@ export default async function () {
   const page = await browser.newPage();
 
   try {
-    await page.goto('http://web:8080/index.html');
+    await page.goto('https://web/index.html');
     await page.waitForSelector('[aria-label="Completed"]');
   } finally {
     await page.close();
