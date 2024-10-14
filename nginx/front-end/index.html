@@ -9,7 +9,7 @@
       async function sendRequests() {
         const requests = [];
         for (let i = 0; i < 10; i++) {
-          const request = fetch("/django/workload/prime-number", { method: "GET" })
+          const request = fetch(`/django/workload/async-sleep?${i}`, { method: "GET" })
             .then((response) => {
               console.log(response.status);
               const p = document.createElement("p");

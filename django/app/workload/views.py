@@ -9,6 +9,11 @@ async def no_load(request):
 
 
 async def sleep(request):
+    await time.sleep(1)
+    return HttpResponse("sleeping")
+
+
+async def async_sleep(request):
     await asyncio.sleep(1)
     return HttpResponse("sleeping")
 
