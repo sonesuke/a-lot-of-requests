@@ -13,5 +13,5 @@ export const options = {
 };
 
 export function test () {
-  http.get('https://web/actix-web/workload/prime-number');
+  http.get('https://web/django/workload/celery-prime-number');
 }

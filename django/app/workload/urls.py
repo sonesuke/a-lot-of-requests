@@ -7,4 +7,5 @@ urlpatterns = [
     path('sleep', views.sleep, name='sleep'),
     path('async-sleep', views.async_sleep, name='async-sleep'),
     path('prime-number', views.prime_number, name='prime number'),
+    path('celery-prime-number', views.celery_prime_number_view, name='celery prime number'),
 ]

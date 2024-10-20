@@ -3,6 +3,8 @@ import time
 import math
 import asyncio
 
+from .tasks import celery_prime_number
+
 
 async def no_load(request):
     return HttpResponse("nothing to do")
@@ -29,3 +31,8 @@ async def prime_number(request):
             primes.append(str(n))
 
     return HttpResponse(",".join(primes))
+
+
+async def celery_prime_number_view(request):
+    celery_prime_number.delay()
+    return HttpResponse("calculating prime numbers")
