@@ -25,7 +25,9 @@ services:
     volumes:
       - ./django:/app
     working_dir: /app/app/
-    command: celery -A mysite worker -c 100 -l info
+    # command: celery -A mysite worker -c 100 -l info
+    # command: celery -A mysite worker -c 100 --pool=threads -l info
+    command: celery -A mysite worker -c 100 --pool=gevent -l info
   redis:
     image: redis:latest
     restart: always

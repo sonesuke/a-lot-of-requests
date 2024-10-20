@@ -1,3 +1,3 @@
 FROM python:3.13-slim-bookworm
 
-RUN pip install Django gunicorn uvicorn uvicorn-worker celery redis
+RUN pip install Django gunicorn uvicorn uvicorn-worker celery redis gevent
