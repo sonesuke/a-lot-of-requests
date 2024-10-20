@@ -1,17 +1,37 @@
 services:
   web:
     build: nginx
+    depends_on:
+      - django
+      - actix_web
     volumes:
     - ./nginx/front-end:/usr/share/nginx/html
     ports:
     - "443:443"
   django:
     build: django
+    depends_on:
+      - redis
     volumes:
     - ./django:/app
     working_dir: /app/app/
     command: ["gunicorn", "mysite.asgi:application", "-w", "1", "-k", "uvicorn_worker.UvicornWorker", "--bind", "0.0.0.0:8000"]
     # command: ["gunicorn", "mysite.wsgi", "--bind", "0.0.0.0:8000"]
+  celery:
+    build: django
+    depends_on:
+      - redis
+      - django
+    volumes:
+      - ./django:/app
+    working_dir: /app/app/
+    command: celery -A mysite worker -c 100 -l info
+  redis:
+    image: redis:latest
+    restart: always
+    tty: true
+    ports:
+      - 6379:6379
   actix_web:
     build: actix_web
     volumes:
@@ -20,6 +40,8 @@ services:
     command: ["actix_web_server"]
   k6:
     image: grafana/k6:master-with-browser
+    depends_on:
+      - web
     volumes:
     - ./k6:/app
     working_dir: /app
